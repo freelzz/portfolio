@@ -16,7 +16,7 @@ export const site = {
 
   // "what's up" blurb on the home page (handwritten)
   intro:
-    "I'm a website designer and full-stack vibe coder — I design the thing, then build it end to end with AI as my pair programmer. ✨ I care about how it looks, how it feels to use, and shipping work that genuinely makes someone's day easier. 🍔",
+    "I'm a website designer and full-stack vibe coder — I design, then build it end to end with AI as my pair programmer. ✨ I care about how it looks, how it feels to use, and shipping work that genuinely makes someone's day easier. 🍔",
 
   // Longer story on the About page
   about: [
