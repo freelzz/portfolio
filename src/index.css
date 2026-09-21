@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: "Silkscreen", monospace;
+  --font-hand: "Caveat", cursive;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --color-paper: #fdfcf8;
+  --color-rule: #dfe5ec;
+  --color-ink: #121212;
+  --color-muted: #6b6b6b;
+
+  --color-yellow: #ffd23f;
+  --color-blue: #1e4fff;
+  --color-pink: #ff5c8a;
+  --color-green: #17b978;
+  --color-orange: #ff5a1f;
+
+  --color-note-yellow: #fff0b3;
+  --color-note-mint: #cdebd9;
+  --color-note-pink: #fdd3de;
+  --color-note-blue: #d6e2ff;
+  --color-note-peach: #ffe1cc;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 35px,
+      var(--color-rule) 35px,
+      var(--color-rule) 36px
+    );
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-yellow);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Big pixel display heading */
+  .pixel {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .hand {
+    font-family: var(--font-hand);
+  }
+
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* Sticky-note style tag (slightly rotated, paper shadow) */
+  .note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  /* Torn-edge colour chip used for skills */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff;
+    clip-path: polygon(
+      0% 8%, 3% 0%, 8% 6%, 14% 0%, 20% 7%, 27% 1%, 33% 6%, 40% 0%, 47% 6%, 53% 1%,
+      60% 7%, 67% 0%, 73% 6%, 80% 1%, 86% 7%, 93% 0%, 97% 6%, 100% 10%,
+      100% 92%, 97% 100%, 93% 94%, 86% 100%, 80% 93%, 73% 99%, 67% 94%, 60% 100%,
+      53% 94%, 47% 100%, 40% 94%, 33% 99%, 27% 93%, 20% 100%, 14% 94%, 8% 100%, 3% 94%, 0% 90%
+    );
+  }
+
+  /* Polaroid photo frame */
+  .polaroid {
+    background: #fff;
+    padding: 0.6rem 0.6rem 2.2rem;
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Strip of masking tape */
+  .tape {
+    position: absolute;
+    width: 5.5rem;
+    height: 1.4rem;
+    background: rgba(233, 226, 198, 0.85);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    opacity: 0.95;
+    pointer-events: none;
+  }
+
+  .btn-ink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-ink);
+    color: #fff;
+    padding: 0.7rem 1.1rem 0.7rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0 var(--color-yellow);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-ink:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--color-yellow);
+  }
+
+  /* Nav pill tab */
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .tab:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  .tab.active {
+    background: var(--color-yellow);
+  }
+
+  .frame {
+    border: 2px solid var(--color-ink);
+  }
+
+  .scribble-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='8' viewBox='0 0 120 8'%3E%3Cpath d='M1 5 C 20 1, 40 7, 60 4 S 100 1, 119 5' fill='none' stroke='%23ff5a1f' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 8px;
+    background-position: 0 100%;
+    padding-bottom: 8px;
+  }
+}
