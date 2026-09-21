@@ -80,7 +80,7 @@ function Hero() {
         className="mx-auto mt-10 max-w-xl text-3xl font-bold leading-tight tracking-tight md:text-4xl"
       >
         {site.tagline.replace(/\.$/, "")} <span className="inline-block align-middle">🟢</span>
-        <span className="ml-1">🌸</span>
+        <span className="ml-1">🤖</span>
       </motion.p>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-8">
