@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
-import { Tape } from "./ui";
+import { Tape, Reveal } from "./ui";
 
 const panelStyles: Record<Project["panel"], { bg: string; text: string; sub: string; tab: string }> = {
   dark: { bg: "bg-ink", text: "text-white", sub: "text-white/60", tab: "bg-blue text-white" },
@@ -17,13 +17,7 @@ export function ProjectPanel({ project, index }: { project: Project; index: numb
   const num = String(index + 1).padStart(2, "0");
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative ${s.bg} ${s.text} ${project.panel === "paper" ? "frame" : ""}`}
-    >
+    <Reveal className={`relative ${s.bg} ${s.text} ${project.panel === "paper" ? "frame" : ""}`}>
       {/* folder tab */}
       <span
         className={`absolute -top-7 left-0 inline-flex h-7 items-center gap-2 px-4 ${s.tab} mono-label`}
@@ -59,6 +53,6 @@ export function ProjectPanel({ project, index }: { project: Project; index: numb
           </motion.div>
         </div>
       </div>
-    </motion.article>
+    </Reveal>
   );
 }

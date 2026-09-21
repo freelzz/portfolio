@@ -1,18 +1,51 @@
-import { motion, type HTMLMotionProps } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion, useInView, type HTMLMotionProps } from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /* ---------- Reveal on scroll ---------- */
+/**
+ * Fades content in when it scrolls into view. Content is never left hidden:
+ * a manual viewport check (on scroll and a short timer) shows it even when
+ * IntersectionObserver doesn't fire (some in-app browsers / hidden windows).
+ */
+export function useRevealed(ref: React.RefObject<HTMLElement | null>) {
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const [forced, setForced] = useState(false);
+
+  useEffect(() => {
+    if (inView || forced) return;
+    const check = () => {
+      const el = ref.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (vh === 0 || (r.top < vh && r.bottom > 0)) setForced(true);
+    };
+    const t = window.setTimeout(check, 1500);
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, [inView, forced, ref]);
+
+  return inView || forced;
+}
+
 export function Reveal({
   children,
   delay = 0,
   className,
   ...rest
 }: { children: ReactNode; delay?: number } & HTMLMotionProps<"div">) {
+  const ref = useRef<HTMLDivElement>(null);
+  const shown = useRevealed(ref);
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
       {...rest}

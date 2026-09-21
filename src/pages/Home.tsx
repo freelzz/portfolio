@@ -62,7 +62,9 @@ function Hero() {
           </motion.h1>
 
           <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-            <Note color="peach" rotate={-2}>{site.role}</Note>
+            {site.role.split(" · ").map((r, i) => (
+              <Note key={r} color={i ? "pink" : "peach"} rotate={i ? 2 : -2}>{r}</Note>
+            ))}
             <span className="mono-label hidden items-center gap-1.5 text-ink/70 sm:inline-flex">
               <span className="h-1.5 w-1.5 rounded-full bg-blue" /> {site.availability}
             </span>
@@ -114,18 +116,11 @@ function WhatsUp() {
           <p className="hand mx-auto mt-6 max-w-md text-2xl leading-snug md:text-[1.7rem]">{site.intro}</p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            {site.skills.map((s, i) => (
-              <motion.span
-                key={s.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="flex items-center gap-2"
-              >
+            {site.skills.map((s) => (
+              <span key={s.label} className="flex items-center gap-2">
                 <span className={`chip ${s.color}`}>{s.label}</span>
                 <span className="text-lg">{s.emoji}</span>
-              </motion.span>
+              </span>
             ))}
           </div>
         </Reveal>

@@ -11,7 +11,11 @@ export function About() {
       <div className="mt-14 grid gap-12 md:grid-cols-[1fr_1.6fr_1fr]">
         {/* left: colour tabs */}
         <Reveal delay={0.1} className="space-y-3">
-          <Note color="peach" rotate={-2}>{site.role}</Note>
+          <div className="flex flex-wrap gap-2">
+            {site.role.split(" · ").map((r, i) => (
+              <Note key={r} color={i ? "pink" : "peach"} rotate={i ? 1.5 : -1.5}>{r}</Note>
+            ))}
+          </div>
           <div className="flex flex-col gap-2">
             {site.skills.map((s) => (
               <span key={s.label} className={`chip w-fit ${s.color} text-sm`}>

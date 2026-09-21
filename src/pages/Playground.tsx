@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Reveal, Note, Hand, Polaroid, PixelHeading, Tape } from "@/components/ui";
 
 /**
@@ -80,14 +79,7 @@ export function Playground() {
 
       <div className="mt-16 columns-1 gap-8 sm:columns-2 lg:columns-3 [&>*]:mb-8 [&>*]:break-inside-avoid">
         {items.map((it, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-            className="flex justify-center"
-          >
+          <Reveal key={i} delay={(i % 3) * 0.08} className="flex justify-center">
             {it.kind === "photo" ? (
               <Polaroid src={it.src} alt={it.alt} caption={it.caption} rotate={it.rotate} width="w-full max-w-xs" />
             ) : (
@@ -97,7 +89,7 @@ export function Playground() {
                 <p className="hand mt-2 text-xl leading-snug text-ink/85">{it.body}</p>
               </div>
             )}
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </section>

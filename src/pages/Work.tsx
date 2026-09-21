@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, ArrowLeft, Github } from "lucide-react";
-import { motion } from "framer-motion";
 import { projects, bySlug } from "@/data/projects";
 import { Reveal, Note, Hand, PixelHeading, Tape } from "@/components/ui";
 
@@ -14,14 +13,7 @@ export function Work() {
 
       <div className="mt-14 grid gap-10 sm:grid-cols-2">
         {projects.map((p, i) => (
-          <motion.article
-            key={p.slug}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
-            className="group"
-          >
+          <Reveal key={p.slug} delay={(i % 2) * 0.1} className="group">
             <Link to={`/work/${p.slug}`} className="block">
               <div className="relative">
                 <Tape className="-top-3 left-1/2 -translate-x-1/2 rotate-[-3deg] z-10" />
@@ -45,7 +37,7 @@ export function Work() {
                 ))}
               </div>
             </Link>
-          </motion.article>
+          </Reveal>
         ))}
       </div>
     </section>
