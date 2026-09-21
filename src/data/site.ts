@@ -2,7 +2,7 @@
  * Everything personal lives here. Edit this file, not the components.
  */
 export const site = {
-  name: "Freelz",
+  name: "Joseph",
   role: "Full-stack Developer",
   location: "Warri, NG",
   tagline: "I build software that gets out of your way.",
@@ -48,8 +48,8 @@ export const site = {
   ],
 
   stats: [
-    { value: "7+", label: "Sites & apps shipped" },
-    { value: "3", label: "Android apps built" },
+    { value: "6+", label: "Sites & apps shipped" },
+    { value: "2", label: "Android apps built" },
     { value: "2", label: "Cities live (Tida)" },
   ],
 };

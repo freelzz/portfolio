@@ -91,27 +91,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "focusflow",
-    title: "FocusFlow",
-    date: "Jul 2026",
-    tagline: "Today's tasks and a Pomodoro timer, fully offline.",
-    description:
-      "A daily focus app: plan today's tasks, run a Pomodoro timer, and see focus stats over time. Everything is bundled into the app itself, so it works with no connection at all.",
-    tags: ["Productivity", "Android"],
-    stack: ["React 19", "TanStack Start", "Tailwind 4", "Capacitor"],
-    live: "",
-    repo: "https://github.com/freelzz/Focus-flow",
-    image: "/shots/taskmate.jpg",
-    panel: "pink",
-    role: "Design & development",
-    timeline: "3 weeks",
-    highlights: [
-      "Offline-first: no backend, no accounts, state persisted on device.",
-      "Focus statistics computed locally from timer sessions.",
-      "Packaged as an Android APK/AAB with Capacitor.",
-    ],
-  },
-  {
     slug: "maison-nord",
     title: "Maison Nord",
     date: "Sep 2026",
