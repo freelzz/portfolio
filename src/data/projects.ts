@@ -23,7 +23,7 @@ export const projects: Project[] = [
     slug: "tida",
     title: "Tida",
     date: "Aug 2026",
-    tagline: "Describe the job. See who nearby can do it.",
+    tagline: "The right person for the job, close to you, today.",
     description:
       "A local services marketplace for Nigeria. You type what you need in plain words — \"a haircut at home before a wedding on Sunday\" — and Tida shows plumbers, electricians, barbers and mechanics near you with reviews from real jobs, priced in Naira before anyone starts work.",
     tags: ["Marketplace", "Web + Android"],
