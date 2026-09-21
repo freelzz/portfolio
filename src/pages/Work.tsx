@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, ArrowLeft, Github } from "lucide-react";
+import { motion } from "framer-motion";
 import { projects, bySlug } from "@/data/projects";
 import { Reveal, Note, Hand, PixelHeading, Tape } from "@/components/ui";
 
@@ -118,10 +119,10 @@ export function CaseStudy() {
           <Hand className="text-lg">what I did</Hand>
           <ul className="mt-3 space-y-3">
             {p.highlights.map((h, i) => (
-              <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-ink/85">
+              <Reveal as="li" key={i} delay={i * 0.08} className="flex gap-3 text-[15px] leading-relaxed text-ink/85">
                 <span className="mt-1.5 h-2 w-2 shrink-0 bg-blue" />
                 {h}
-              </li>
+              </Reveal>
             ))}
           </ul>
         </Reveal>
@@ -155,9 +156,14 @@ export function CaseStudy() {
 
 function Meta({ label, value, color, rotate, className = "" }: { label: string; value: string; color: string; rotate: number; className?: string }) {
   return (
-    <div className={`${color} px-4 py-3 shadow-[2px_3px_0_rgba(0,0,0,0.12)] ${className}`} style={{ transform: `rotate(${rotate}deg)` }}>
+    <motion.div
+      initial={{ rotate }}
+      whileHover={{ rotate: 0, y: -3 }}
+      transition={{ type: "spring", stiffness: 260, damping: 16 }}
+      className={`${color} px-4 py-3 shadow-[2px_3px_0_rgba(0,0,0,0.12)] ${className}`}
+    >
       <div className="mono-label text-ink/60">{label}</div>
       <div className="mt-1 text-sm font-semibold">{value}</div>
-    </div>
+    </motion.div>
   );
 }

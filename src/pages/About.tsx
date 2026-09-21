@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { site } from "@/data/site";
 import { Reveal, Note, Hand, Polaroid, PixelHeading, Tape } from "@/components/ui";
 
@@ -18,9 +19,9 @@ export function About() {
           </div>
           <div className="flex flex-col gap-2">
             {site.skills.map((s) => (
-              <span key={s.label} className={`chip w-fit ${s.color} text-sm`}>
+              <motion.span key={s.label} whileHover={{ x: 6, rotate: -1 }} className={`chip w-fit ${s.color} text-sm`}>
                 {s.label}
-              </span>
+              </motion.span>
             ))}
           </div>
           <div className="pt-6">

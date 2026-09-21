@@ -1,6 +1,7 @@
 import { NavLink, Outlet, Link, useLocation } from "react-router-dom";
 import { Home, User, LayoutGrid, Sparkles, Heart, Github, Mail, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { site } from "@/data/site";
 
 const tabs = [
@@ -69,7 +70,9 @@ export function Layout() {
       </header>
 
       <main>
-        <Outlet />
+        <motion.div key={pathname} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
+          <Outlet />
+        </motion.div>
       </main>
 
       <Footer />

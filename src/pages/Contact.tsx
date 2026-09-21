@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Github, Mail, MessageCircle, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { site } from "@/data/site";
 import { Reveal, Hand, Polaroid, Tape } from "@/components/ui";
 
@@ -36,7 +37,13 @@ export function Contact() {
             Got a project, a new problem, or just want to say hi? Send it over. I read every message.
           </p>
 
-          <form onSubmit={submit} className="relative mt-8 bg-note-yellow p-5 text-left shadow-[3px_4px_0_rgba(0,0,0,0.15)]" style={{ transform: "rotate(-0.5deg)" }}>
+          <motion.form
+            onSubmit={submit}
+            initial={{ rotate: -0.8 }}
+            whileHover={{ rotate: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className="relative mt-8 bg-note-yellow p-5 text-left shadow-[3px_4px_0_rgba(0,0,0,0.15)]"
+          >
             <Tape className="-top-3 left-1/2 -translate-x-1/2 rotate-[2deg]" />
             <Field label="Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
             <Field label="Email (optional)" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
@@ -55,15 +62,15 @@ export function Contact() {
               <span className="flex h-6 w-6 items-center justify-center bg-blue">→</span>
               Send it
             </button>
-          </form>
+          </motion.form>
 
           <div className="mt-8">
             <Hand className="block text-lg">or find me on</Hand>
             <div className="mt-3 flex flex-wrap justify-center gap-3">
               {links.map(({ href, label, icon: Icon }) => (
-                <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="tab frame bg-white">
+                <motion.a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" whileHover={{ y: -3, rotate: -1 }} className="tab frame bg-white">
                   <Icon className="h-3.5 w-3.5" /> {label} <ArrowUpRight className="h-3 w-3 opacity-50" />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>

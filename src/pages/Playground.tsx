@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Reveal, Note, Hand, Polaroid, PixelHeading, Tape } from "@/components/ui";
 
 /**
@@ -83,11 +84,16 @@ export function Playground() {
             {it.kind === "photo" ? (
               <Polaroid src={it.src} alt={it.alt} caption={it.caption} rotate={it.rotate} width="w-full max-w-xs" />
             ) : (
-              <div className={`relative w-full max-w-xs ${it.color} px-5 py-5 shadow-[2px_3px_0_rgba(0,0,0,0.12)]`} style={{ transform: `rotate(${it.rotate}deg)` }}>
+              <motion.div
+                initial={{ rotate: it.rotate }}
+                whileHover={{ rotate: 0, y: -6 }}
+                transition={{ type: "spring", stiffness: 260, damping: 16 }}
+                className={`relative w-full max-w-xs ${it.color} px-5 py-5 shadow-[2px_3px_0_rgba(0,0,0,0.12)]`}
+              >
                 <Tape className="-top-3 left-1/2 -translate-x-1/2 rotate-[-2deg]" />
                 <h3 className="text-lg font-extrabold tracking-tight">{it.title}</h3>
                 <p className="hand mt-2 text-xl leading-snug text-ink/85">{it.body}</p>
-              </div>
+              </motion.div>
             )}
           </Reveal>
         ))}

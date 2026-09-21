@@ -33,16 +33,20 @@ export function useRevealed(ref: React.RefObject<HTMLElement | null>) {
   return inView || forced;
 }
 
+const revealTags = { div: motion.div, li: motion.li, span: motion.span } as const;
+
 export function Reveal({
   children,
   delay = 0,
   className,
+  as = "div",
   ...rest
-}: { children: ReactNode; delay?: number } & HTMLMotionProps<"div">) {
+}: { children: ReactNode; delay?: number; as?: keyof typeof revealTags } & HTMLMotionProps<"div">) {
   const ref = useRef<HTMLDivElement>(null);
   const shown = useRevealed(ref);
+  const Tag = revealTags[as] as typeof motion.div;
   return (
-    <motion.div
+    <Tag
       ref={ref}
       initial={{ opacity: 0, y: 24 }}
       animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
@@ -51,7 +55,7 @@ export function Reveal({
       {...rest}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }
 
@@ -104,16 +108,25 @@ export function Note({
   color = "yellow",
   rotate = 0,
   className = "",
+  delay,
 }: {
   children: ReactNode;
   color?: keyof typeof noteColors;
   rotate?: number;
   className?: string;
+  /** When set, the note drops in on mount after this many seconds */
+  delay?: number;
 }) {
   return (
-    <span className={`note ${noteColors[color]} ${className}`} style={{ transform: `rotate(${rotate}deg)` }}>
+    <motion.span
+      className={`note ${noteColors[color]} ${className}`}
+      initial={delay === undefined ? { rotate } : { rotate: rotate - 6, opacity: 0, y: -10 }}
+      animate={{ rotate, opacity: 1, y: 0 }}
+      whileHover={{ rotate: rotate + (rotate >= 0 ? -3 : 3), scale: 1.06 }}
+      transition={{ type: "spring", stiffness: 300, damping: 16, delay }}
+    >
       {children}
-    </span>
+    </motion.span>
   );
 }
 

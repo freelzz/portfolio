@@ -5,7 +5,7 @@ export const site = {
   name: "Joseph",
   role: "Website Designer · Full-stack Vibe Coder",
   location: "Warri, NG",
-  tagline: "I build softwares that help tackle the problems in your everyday life.",
+  tagline: "I build software that helps tackle the problems in your everyday life.",
   availability: "Open to new work and good problems",
   email: "jozep114@gmail.com",
   github: "https://github.com/freelzz",

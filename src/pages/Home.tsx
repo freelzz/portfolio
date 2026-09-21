@@ -43,10 +43,10 @@ function Hero() {
         <div className="mx-auto mt-1 h-px w-10 bg-ink/40" />
 
         <div className="relative mt-3 inline-block">
-          <Note color="mint" rotate={-4} className="absolute -left-28 top-2 hidden md:inline-flex">
+          <Note color="mint" rotate={-4} delay={0.7} className="absolute -left-28 top-2 hidden md:inline-flex">
             Made things
           </Note>
-          <Note color="yellow" rotate={3} className="absolute -right-32 top-2 hidden md:inline-flex">
+          <Note color="yellow" rotate={3} delay={0.85} className="absolute -right-32 top-2 hidden md:inline-flex">
             Sweat the details
           </Note>
 
@@ -63,12 +63,12 @@ function Hero() {
 
           <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
             {site.role.split(" · ").map((r, i) => (
-              <Note key={r} color={i ? "pink" : "peach"} rotate={i ? 2 : -2}>{r}</Note>
+              <Note key={r} color={i ? "pink" : "peach"} rotate={i ? 2 : -2} delay={0.5 + i * 0.12}>{r}</Note>
             ))}
             <span className="mono-label hidden items-center gap-1.5 text-ink/70 sm:inline-flex">
               <span className="h-1.5 w-1.5 rounded-full bg-blue" /> {site.availability}
             </span>
-            <Note color="mint" rotate={2}>{site.location}</Note>
+            <Note color="mint" rotate={2} delay={0.8}>{site.location}</Note>
           </div>
         </div>
       </div>
@@ -117,10 +117,10 @@ function WhatsUp() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {site.skills.map((s) => (
-              <span key={s.label} className="flex items-center gap-2">
+              <motion.span key={s.label} whileHover={{ scale: 1.06, rotate: -1.5 }} transition={{ type: "spring", stiffness: 300, damping: 14 }} className="flex items-center gap-2">
                 <span className={`chip ${s.color}`}>{s.label}</span>
                 <span className="text-lg">{s.emoji}</span>
-              </span>
+              </motion.span>
             ))}
           </div>
         </Reveal>
