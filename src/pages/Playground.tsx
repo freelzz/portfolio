@@ -17,7 +17,7 @@ const items = [
     kind: "card",
     color: "bg-note-yellow",
     title: "Android from one codebase",
-    body: "Tida and Taskmate both ship as APK/AAB via Capacitor. Same React, no rewrite.",
+    body: "Tida and ToDo both ship as APK/AAB via Capacitor. Same React, no rewrite.",
     rotate: 2,
   },
   {

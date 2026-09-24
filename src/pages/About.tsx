@@ -60,7 +60,7 @@ export function About() {
         {/* right: polaroids */}
         <Reveal delay={0.3} className="flex flex-col items-center gap-10 md:items-end">
           <Polaroid src="/shots/tida.jpg" alt="Tida" caption="tida, live in 2 cities" rotate={4} width="w-52" />
-          <Polaroid src="/shots/taskmate.jpg" alt="Taskmate" caption="taskmate 📅" rotate={-4} width="w-52" />
+          <Polaroid src="/shots/todo.jpg" alt="ToDo" caption="todo, it talks back" rotate={-4} width="w-52" />
         </Reveal>
       </div>
     </section>

@@ -77,7 +77,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.2} className="hidden justify-center md:flex">
-          <Polaroid src="/shots/taskmate.jpg" alt="Taskmate" caption="taskmate" rotate={5} width="w-52" />
+          <Polaroid src="/shots/todo.jpg" alt="ToDo" caption="todo" rotate={5} width="w-52" />
         </Reveal>
       </div>
     </section>
